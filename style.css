@@ -1,0 +1,219 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Center vertically for the whole page */
+    min-height: 100vh;
+    background-color: #e9e9e9;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    color: #333;
+}
+
+.game-app-container {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    text-align: center;
+    max-width: 600px; /* Ogranicz szerokość dla lepszego wyglądu */
+    width: 100%;
+}
+
+h1 {
+    color: #005a9c;
+    margin-bottom: 10px;
+}
+
+.instructions {
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.game-board-layout {
+    display: flex;
+    flex-direction: column; /* Układa paski kontrolek i środkową część wertykalnie */
+    align-items: center; /* Centruje paski i środkową część */
+    margin-bottom: 20px;
+    border: 2px solid #b0b0b0; /* Ramka wokół całej planszy */
+    padding: 10px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+}
+
+.control-strip {
+    display: flex;
+    justify-content: center; /* Centruje przyciski w pasku */
+    align-items: center;
+}
+
+.horizontal-strip {
+    width: calc(100% - 2 * 40px); /* Dopasuj do szerokości siatki + marginesy kontrolek bocznych */
+    min-width: calc(6 * 40px + 5 * 4px); /* Szerokość siatki */
+    margin-left: 40px; /* Miejsce na lewe kontrolki */
+    margin-right: 40px; /* Miejsce na prawe kontrolki */
+}
+.top-strip { margin-bottom: 5px; }
+.bottom-strip { margin-top: 5px; }
+
+.middle-content-row {
+    display: flex; /* Układa paski boczne i siatkę w rzędzie */
+    align-items: center; /* Wyrównuje elementy w rzędzie wertykalnie */
+    width: 100%;
+    justify-content: center;
+}
+
+.vertical-strip {
+    display: flex;
+    flex-direction: column; /* Przyciski jeden pod drugim */
+    justify-content: center;
+    align-items: center;
+    width: 35px; /* Szerokość bocznych paneli kontrolnych */
+}
+.left-strip { margin-right: 5px; }
+.right-strip { margin-left: 5px; }
+
+.corner-spacer {
+    width: 35px; /* Powinien odpowiadać szerokości .vertical-strip */
+    flex-shrink: 0;
+}
+
+.move-button {
+    background-color: #007bff;
+    color: white;
+    border: 1px solid #0056b3;
+    border-radius: 5px;
+    padding: 8px 10px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 3px;
+    min-width: 30px; /* Minimalna szerokość przycisku */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.move-button:hover {
+    background-color: #0056b3;
+}
+.move-button:active {
+    background-color: #004085;
+    transform: translateY(1px);
+}
+
+/* Dostosowanie dla przycisków poziomych i pionowych */
+.horizontal-strip .move-button {
+    flex-grow: 1; /* Aby przyciski wypełniły dostępną przestrzeń */
+    max-width: 80px; /* Ograniczenie, by nie były za szerokie */
+}
+.vertical-strip .move-button {
+    width: 100%; /* Pełna szerokość paska pionowego */
+}
+
+
+#grid-container {
+    display: grid;
+    grid-template-columns: repeat(6, 40px); /* 6 kolumn */
+    grid-template-rows: repeat(4, 40px);    /* 4 wiersze */
+    gap: 4px;
+    padding: 5px;
+    border: 2px solid #ccc;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    /* Upewnij się, że siatka nie rozpycha layoutu */
+    flex-shrink: 0; 
+}
+
+.grid-cell {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #d0d0d0;
+    font-size: 1.5em; /* Zwiększono dla lepszej czytelności */
+    font-weight: bold;
+    background-color: #fff;
+    border-radius: 3px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#message-area {
+    margin-top: 20px;
+    padding: 12px;
+    background-color: #e9f7ef;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    border-radius: 6px;
+    min-height: 24px;
+    font-size: 0.95em;
+}
+
+.action-buttons-footer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+#reset-button, #exit-button {
+    padding: 12px 20px;
+    font-size: 1em;
+}
+
+#reset-button {
+    background-color: #28a745; /* Zielony */
+    border-color: #1e7e34;
+}
+#reset-button:hover { background-color: #218838; }
+#reset-button:active { background-color: #1e7e34; }
+
+#exit-button {
+    background-color: #dc3545; /* Czerwony */
+    border-color: #bd2130;
+}
+#exit-button:hover { background-color: #c82333; }
+#exit-button:active { background-color: #bd2130; }
+
+/* Poprawki dla mniejszych ekranów */
+@media (max-width: 500px) {
+    body {
+        padding: 10px;
+    }
+    .game-app-container {
+        padding: 15px;
+    }
+    #grid-container {
+        grid-template-columns: repeat(6, 30px);
+        grid-template-rows: repeat(4, 30px);
+        gap: 3px;
+    }
+    .grid-cell {
+        width: 30px;
+        height: 30px;
+        font-size: 1.1em;
+    }
+    .move-button {
+        padding: 6px 8px;
+        font-size: 0.9em;
+        min-width: 25px;
+    }
+    .horizontal-strip {
+        width: calc(100% - 2 * 30px); /* Mniejsze marginesy */
+        min-width: calc(6 * 30px + 5 * 3px);
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+    .vertical-strip { width: 28px; }
+    .corner-spacer { width: 28px; }
+
+    .action-buttons-footer {
+        flex-direction: column;
+        gap: 10px;
+    }
+    #reset-button, #exit-button {
+        width: 100%;
+    }
+}

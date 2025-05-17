@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QBasic Gra Logiczna - Interaktywna</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-app-container">
+        <h1>Gra Logiczna (Port z QBasic)</h1>
+        <div class="instructions">
+            Kliknij na numery (1-5) wokół planszy, aby wykonać ruchy.
+        </div>
+
+        <div class="game-board-layout">
+            <!-- Górny panel kontrolny -->
+            <div class="control-strip horizontal-strip top-strip">
+                <div class="corner-spacer"></div>
+                <button class="move-button" data-move="3" aria-label="Ruch pionowy 3">3</button>
+                <button class="move-button" data-move="4" aria-label="Ruch pionowy 4">4</button>
+                <button class="move-button" data-move="5" aria-label="Ruch pionowy 5">5</button>
+                <div class="corner-spacer"></div>
+            </div>
+
+            <div class="middle-content-row">
+                <!-- Lewy panel kontrolny -->
+                <div class="control-strip vertical-strip left-strip">
+                    <button class="move-button" data-move="1" aria-label="Ruch poziomy 1">1</button>
+                    <button class="move-button" data-move="2" aria-label="Ruch poziomy 2">2</button>
+                </div>
+
+                <!-- Siatka z literami -->
+                <div id="grid-container">
+                    <!-- Komórki siatki będą generowane przez JavaScript -->
+                </div>
+
+                <!-- Prawy panel kontrolny -->
+                <div class="control-strip vertical-strip right-strip">
+                    <button class="move-button" data-move="1" aria-label="Ruch poziomy 1">1</button>
+                    <button class="move-button" data-move="2" aria-label="Ruch poziomy 2">2</button>
+                </div>
+            </div>
+
+            <!-- Dolny panel kontrolny (wizualny, może być też klikalny) -->
+            <div class="control-strip horizontal-strip bottom-strip">
+                <div class="corner-spacer"></div>
+                <button class="move-button" data-move="3" aria-label="Ruch pionowy 3">3</button>
+                <button class="move-button" data-move="4" aria-label="Ruch pionowy 4">4</button>
+                <button class="move-button" data-move="5" aria-label="Ruch pionowy 5">5</button>
+                <div class="corner-spacer"></div>
+            </div>
+        </div>
+
+        <div id="message-area">
+            Kliknij na numery, aby rozpocząć grę.
+        </div>
+
+        <div class="action-buttons-footer">
+            <button id="reset-button">Nowa Gra (Pomieszaj)</button>
+            <button id="exit-button" class="move-button" data-move="0" aria-label="Zakończ grę">0 (Zakończ)</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
